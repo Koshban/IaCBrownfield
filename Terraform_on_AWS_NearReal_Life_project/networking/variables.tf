@@ -7,25 +7,23 @@ variable "aws_region" {
   default     = "ap-southeast-1"
   description = "Default AWS region to deploy to"
 }
-
-# variable "subnet_count" {
-#   default     = 2
-#   type        = number
-#   description = "Total number of subnets to use"
-# }
-
-# variable "cidr_block" {
-#   default     = "10.0.0.0/16"
-#   type        = string
-#   description = "Base CIDR Block for VPC"
-# }
 ##################################################################################
-# Mandatory VARIABLES as these have NO defaults
+# Optional VARIABLES as these have reasonable defaults
 ##################################################################################
-variable "private_subnets" {
-  type = list(any)
+variable "consul_address" {
+  type        = string
+  description = "Address of Consul server"
+  default     = "127.0.0.1"
 }
 
-variable "public_subnets" {
-  type = list(any)
+variable "consul_port" {
+  type        = number
+  description = "Port Consul server is listening on"
+  default     = "8500"
+}
+
+variable "consul_datacenter" {
+  type        = string
+  description = "Name of the Consul datacenter"
+  default     = "dc1"
 }
