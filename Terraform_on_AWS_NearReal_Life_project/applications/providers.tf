@@ -13,6 +13,11 @@ terraform {
       source  = "hashicorp/consul"
       version = "~> 2.0"
     }
+
+    random = {
+      source  = "registry.terraform.io/hashicorp/random"
+      version = "~> 3.0"
+    }
   }
 }
 

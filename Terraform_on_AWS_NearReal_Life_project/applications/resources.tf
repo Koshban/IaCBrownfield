@@ -42,6 +42,7 @@ resource "aws_launch_configuration" "webapp_lc" {
 
   user_data                   = file("./templates/userdata.sh")
   associate_public_ip_address = true
+  iam_instance_profile        = aws_iam_instance_profile.asg.name
 }
 
 resource "aws_elb" "webapp_elb" {
@@ -166,7 +167,7 @@ resource "aws_db_instance" "rds" {
   engine_version         = local.rds_version
   instance_class         = local.rds_instance_size
   multi_az               = local.rds_multi_az
-  name                   = "${terraform.workspace}${local.rds_db_name}"
+  db_name                = "${terraform.workspace}${local.rds_db_name}"
   username               = var.rds_username
   password               = var.rds_password
   db_subnet_group_name   = aws_db_subnet_group.db_subnet_group.id
